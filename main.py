@@ -1,19 +1,25 @@
 import requests
 
-# Define the URL of your server API endpoint
+# Define the URL of the server's API endpoint
 url = 'https://mate-ecfc.onrender.com/data'
 
-# Define the data you want to add
+# Sample data to add
 data_to_add = {
-    'key': 'example_key',
-    'value': 'example_value'
+    'new_key': 'new_value'
 }
 
-# Send a POST request to add the data
-response = requests.post(url, json=data_to_add)
+# Define the username and password for authentication
+username = 'matedev'
+password = '4117'
 
-# Check the response
-if response.status_code == 200:
-    print('Data added successfully.')
-else:
-    print('Failed to add data.')
+try:
+    # Send a POST request with authentication credentials
+    response = requests.post(url, json=data_to_add, auth=(username, password))
+
+    # Check the response status code
+    if response.status_code == 200:
+        print('Data added successfully.')
+    else:
+        print(f'Failed to add data. Status code: {response.status_code}')
+except Exception as e:
+    print(f'Error: {e}')
